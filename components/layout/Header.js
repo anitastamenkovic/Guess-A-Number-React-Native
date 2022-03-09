@@ -20,7 +20,9 @@ const styles = StyleSheet.create({
   },
   textHeader: {
     color: Colors.lightPrimary,
-    fontSize: 18,
+    fontFamily: 'Open Sans',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 

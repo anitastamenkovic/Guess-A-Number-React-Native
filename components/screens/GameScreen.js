@@ -4,6 +4,7 @@ import {StyleSheet, View, Text, Button, Alert} from 'react-native';
 import NumberContainer from '../layout/NumberContainer';
 import Card from '../layout/Card';
 import Colors from '../../constants/colors';
+import DefaultStyles from '../../constants/default-styles';
 
 const generateRandomNumber = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -58,7 +59,7 @@ const GameScreen = ({userChoice, onGameOver}) => {
   return (
     <View style={styles.screen}>
       <Card style={styles.card}>
-        <Text>Opponent's Guess</Text>
+        <Text style={DefaultStyles.text}>Opponent's Guess</Text>
         <NumberContainer number={currentGuess} />
         <View style={styles.btnContainer}>
           <Button
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: 100,
+    fontFamily: 'Open Sans',
   },
 });
 

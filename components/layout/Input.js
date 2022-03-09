@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     borderBottomColor: Colors.primary,
     borderBottomWidth: 1,
     marginVertical: 10,
+    fontFamily: 'Open Sans',
   },
 });
 
