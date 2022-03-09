@@ -11,6 +11,7 @@ import {
 
 import Card from '../layout/Card';
 import Input from '../layout/Input';
+import MainButton from '../layout/mainButton';
 import NumberContainer from '../layout/NumberContainer';
 import Colors from '../../constants/colors';
 import DefaultStyles from '../../constants/default-styles';
@@ -70,31 +71,19 @@ const StartGameScreen = props => {
             value={enteredValue}
           />
           <View style={styles.btnContainer}>
-            <View style={styles.btn}>
-              <Button
-                title="Reset"
-                onPress={resetInputHandler}
-                color={Colors.accent}
-              />
-            </View>
-            <View style={styles.btn}>
-              <Button
-                title="Confirm"
-                onPress={confirmInputHandler}
-                color={Colors.primary}
-              />
-            </View>
+            <MainButton
+              title="Reset"
+              onClick={resetInputHandler}
+              style={styles.resetBtn}
+            />
+            <MainButton title="Confirm" onClick={confirmInputHandler} />
           </View>
         </Card>
         {confirmed && (
           <Card style={styles.outputContainer}>
             <Text style={DefaultStyles.text}>You selected</Text>
             <NumberContainer number={selectedNumber} />
-            <Button
-              title="START GAME"
-              color={Colors.primary}
-              onPress={startGameHandler}
-            />
+            <MainButton title="START GAME" onClick={startGameHandler} />
           </Card>
         )}
       </View>
@@ -117,11 +106,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '100%',
-    paddingHorizontal: 15,
   },
-  btn: {
-    width: 100,
-    fontFamily: 'Open Sans',
+  resetBtn: {
+    backgroundColor: Colors.accent,
   },
   input: {
     width: 50,
