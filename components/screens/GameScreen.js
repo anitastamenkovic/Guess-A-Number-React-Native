@@ -1,5 +1,13 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {StyleSheet, View, Text, Button, Alert, ScrollView, FlatList} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Alert,
+  ScrollView,
+  FlatList,
+} from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import NumberContainer from '../layout/NumberContainer';
 import Card from '../layout/Card';
@@ -7,18 +15,7 @@ import MainButton from '../layout/mainButton';
 import List from '../layout/List';
 import Colors from '../../constants/colors';
 import DefaultStyles from '../../constants/default-styles';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-
-const generateRandomNumber = (min, max, exclude) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  const rndNum = Math.floor(Math.random() * (max - min)) + min;
-  if (rndNum === exclude) {
-    return generateRandomNumber(min, max, exclude);
-  } else {
-    return rndNum;
-  }
-};
+import {generateRandomNumber} from '../../constants/helpers';
 
 const GameScreen = ({userChoice, onGameOver}) => {
   const initialGuess = generateRandomNumber(1, 100, userChoice);
@@ -55,7 +52,10 @@ const GameScreen = ({userChoice, onGameOver}) => {
       currentGuess,
     );
     setCurrentGuess(nextNumber);
-    setPastGuesses(currentPastGueses => [nextNumber.toString(), ...currentPastGueses]);
+    setPastGuesses(currentPastGuesses => [
+      nextNumber.toString(),
+      ...currentPastGuesses,
+    ]);
   };
 
   return (
@@ -65,13 +65,11 @@ const GameScreen = ({userChoice, onGameOver}) => {
         <NumberContainer number={currentGuess} />
         <View style={styles.btnContainer}>
           <MainButton
-            style={styles.btn}
             color={Colors.primary}
             onClick={nextGuessHandler.bind(this, 'lower')}>
             <Ionicons name="md-remove" size={24} color={Colors.lightPrimary} />
           </MainButton>
           <MainButton
-            style={styles.btn}
             color={Colors.primary}
             onClick={nextGuessHandler.bind(this, 'greater')}>
             <Ionicons name="md-add" size={24} color={Colors.lightPrimary} />
@@ -85,7 +83,16 @@ const GameScreen = ({userChoice, onGameOver}) => {
           ))}
         </ScrollView>
       </View> */}
-      <FlatList keyExtractor={item => item} data={pastGuesses} renderItem={itemData => <List value={itemData.item.value} numOfRound={itemData.length} />} />
+      <View style={styles.listContainer}>
+        <FlatList
+          contentContainerStyle={styles.list}
+          keyExtractor={item => item}
+          data={pastGuesses}
+          renderItem={({item, index, separators}) => (
+            <List value={item} numOfRound={pastGuesses.length - index} />
+          )}
+        />
+      </View>
     </View>
   );
 };
@@ -108,17 +115,13 @@ const styles = StyleSheet.create({
     width: 300,
     maxWidth: '80%',
   },
-  btn: {
-    width: '100%',
-    fontFamily: 'Open Sans',
-  },
   listContainer: {
     flex: 1,
     width: '80%',
   },
   list: {
     flexGrow: 1,
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'flex-end',
   },
 });

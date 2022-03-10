@@ -6,6 +6,7 @@ export default StyleSheet.create({
     fontFamily: 'Open Sans',
     fontSize: 18,
     textAlign: 'center',
+    color: Colors.grey,
   },
   titleText: {
     fontFamily: 'Open Sans',
@@ -13,6 +14,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     marginVertical: 10,
     textAlign: 'center',
+    color: Colors.grey,
   },
   highlightText: {
     fontFamily: 'Open Sans',

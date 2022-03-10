@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
@@ -71,10 +70,9 @@ const StartGameScreen = props => {
             value={enteredValue}
           />
           <View style={styles.btnContainer}>
-            <MainButton
-              onClick={resetInputHandler}
-              style={styles.resetBtn}
-            >Reset</MainButton>
+            <MainButton onClick={resetInputHandler} style={styles.resetBtn}>
+              Reset
+            </MainButton>
             <MainButton onClick={confirmInputHandler}>Confirm</MainButton>
           </View>
         </Card>
