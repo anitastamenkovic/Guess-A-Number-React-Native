@@ -2,11 +2,11 @@ import React from 'react';
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import Colors from '../../constants/colors';
 
-const MainButton = ({title, onClick, style}) => {
+const MainButton = ({children, onClick, style}) => {
   return (
     <TouchableOpacity activeOpacity={0.6} onPress={onClick}>
       <View style={{...styles.btnContainer, ...style}}>
-        <Text style={styles.btnText}>{title}</Text>
+        <Text style={styles.btnText}>{children}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 12,
     borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   btnText: {
     color: Colors.lightPrimary,

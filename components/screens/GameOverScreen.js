@@ -29,7 +29,7 @@ const GameOverScreen = ({roundsNumber, userNumber, onRestart}) => {
           <Text style={DefaultStyles.highlightText}> {userNumber}.</Text>
         </Text>
       </View>
-      <MainButton title="NEW GAME" onClick={onRestart} />
+      <MainButton onClick={onRestart}>NEW GAME</MainButton>
     </View>
   );
 };

@@ -72,18 +72,17 @@ const StartGameScreen = props => {
           />
           <View style={styles.btnContainer}>
             <MainButton
-              title="Reset"
               onClick={resetInputHandler}
               style={styles.resetBtn}
-            />
-            <MainButton title="Confirm" onClick={confirmInputHandler} />
+            >Reset</MainButton>
+            <MainButton onClick={confirmInputHandler}>Confirm</MainButton>
           </View>
         </Card>
         {confirmed && (
           <Card style={styles.outputContainer}>
             <Text style={DefaultStyles.text}>You selected</Text>
             <NumberContainer number={selectedNumber} />
-            <MainButton title="START GAME" onClick={startGameHandler} />
+            <MainButton onClick={startGameHandler}>START GAME</MainButton>
           </Card>
         )}
       </View>

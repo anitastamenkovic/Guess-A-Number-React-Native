@@ -1,10 +1,13 @@
 import React, {useState, useRef, useEffect} from 'react';
-import {StyleSheet, View, Text, Button, Alert} from 'react-native';
+import {StyleSheet, View, Text, Button, Alert, ScrollView, FlatList} from 'react-native';
 
 import NumberContainer from '../layout/NumberContainer';
 import Card from '../layout/Card';
+import MainButton from '../layout/mainButton';
+import List from '../layout/List';
 import Colors from '../../constants/colors';
 import DefaultStyles from '../../constants/default-styles';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const generateRandomNumber = (min, max, exclude) => {
   min = Math.ceil(min);
@@ -18,17 +21,16 @@ const generateRandomNumber = (min, max, exclude) => {
 };
 
 const GameScreen = ({userChoice, onGameOver}) => {
-  const [currentGuess, setCurrentGuess] = useState(
-    generateRandomNumber(1, 100, userChoice),
-  );
-  const [rounds, setRounds] = useState(0);
+  const initialGuess = generateRandomNumber(1, 100, userChoice);
+  const [currentGuess, setCurrentGuess] = useState(initialGuess);
+  const [pastGuesses, setPastGuesses] = useState([initialGuess.toString()]);
 
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
 
   useEffect(() => {
     if (currentGuess === userChoice) {
-      onGameOver(rounds);
+      onGameOver(pastGuesses.length);
     }
   }, [currentGuess, userChoice, onGameOver]);
 
@@ -45,7 +47,7 @@ const GameScreen = ({userChoice, onGameOver}) => {
     if (direction === 'lower') {
       currentHigh.current = currentGuess;
     } else {
-      currentLow.current = currentGuess;
+      currentLow.current = currentGuess + 1;
     }
     const nextNumber = generateRandomNumber(
       currentLow.current,
@@ -53,7 +55,7 @@ const GameScreen = ({userChoice, onGameOver}) => {
       currentGuess,
     );
     setCurrentGuess(nextNumber);
-    setRounds(currentRounds => currentRounds + 1);
+    setPastGuesses(currentPastGueses => [nextNumber.toString(), ...currentPastGueses]);
   };
 
   return (
@@ -62,26 +64,35 @@ const GameScreen = ({userChoice, onGameOver}) => {
         <Text style={DefaultStyles.text}>Opponent's Guess</Text>
         <NumberContainer number={currentGuess} />
         <View style={styles.btnContainer}>
-          <Button
-            title="LOWER"
+          <MainButton
             style={styles.btn}
             color={Colors.primary}
-            onPress={nextGuessHandler.bind(this, 'lower')}
-          />
-          <Button
-            title="GREATER"
+            onClick={nextGuessHandler.bind(this, 'lower')}>
+            <Ionicons name="md-remove" size={24} color={Colors.lightPrimary} />
+          </MainButton>
+          <MainButton
             style={styles.btn}
             color={Colors.primary}
-            onPress={nextGuessHandler.bind(this, 'greater')}
-          />
+            onClick={nextGuessHandler.bind(this, 'greater')}>
+            <Ionicons name="md-add" size={24} color={Colors.lightPrimary} />
+          </MainButton>
         </View>
       </Card>
+      {/* <View style={styles.listContainer}>
+        <ScrollView contentContainerStyle={styles.list}>
+          {pastGuesses.map((guess, index) => (
+            <List value={guess} numOfRound={pastGuesses.length - index} />
+          ))}
+        </ScrollView>
+      </View> */}
+      <FlatList keyExtractor={item => item} data={pastGuesses} renderItem={itemData => <List value={itemData.item.value} numOfRound={itemData.length} />} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   screen: {
+    flex: 1,
     padding: 10,
     alignItems: 'center',
   },
@@ -89,6 +100,7 @@ const styles = StyleSheet.create({
     width: 300,
     maxWidth: '80%',
     alignItems: 'center',
+    marginVertical: 20,
   },
   btnContainer: {
     flexDirection: 'row',
@@ -97,8 +109,17 @@ const styles = StyleSheet.create({
     maxWidth: '80%',
   },
   btn: {
-    width: 100,
+    width: '100%',
     fontFamily: 'Open Sans',
+  },
+  listContainer: {
+    flex: 1,
+    width: '80%',
+  },
+  list: {
+    flexGrow: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
   },
 });
 
