@@ -6,6 +6,7 @@ import {
   Alert,
   ScrollView,
   FlatList,
+  Dimensions,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -58,20 +59,22 @@ const GameScreen = ({userChoice, onGameOver}) => {
     ]);
   };
 
+  let listContainerStyle = styles.listContainer;
+
+  if (Dimensions.get('window').width > 350) {
+    listContainerStyle = styles.listContainerBig;
+  }
+
   return (
     <View style={styles.screen}>
       <Card style={styles.card}>
         <Text style={DefaultStyles.text}>Opponent's Guess</Text>
         <NumberContainer number={currentGuess} />
         <View style={styles.btnContainer}>
-          <MainButton
-            color={Colors.primary}
-            onClick={nextGuessHandler.bind(this, 'lower')}>
+          <MainButton onClick={nextGuessHandler.bind(this, 'lower')}>
             <Ionicons name="md-remove" size={24} color={Colors.lightPrimary} />
           </MainButton>
-          <MainButton
-            color={Colors.primary}
-            onClick={nextGuessHandler.bind(this, 'greater')}>
+          <MainButton onClick={nextGuessHandler.bind(this, 'greater')}>
             <Ionicons name="md-add" size={24} color={Colors.lightPrimary} />
           </MainButton>
         </View>
@@ -83,7 +86,7 @@ const GameScreen = ({userChoice, onGameOver}) => {
           ))}
         </ScrollView>
       </View> */}
-      <View style={styles.listContainer}>
+      <View style={listContainerStyle}>
         <FlatList
           contentContainerStyle={styles.list}
           keyExtractor={item => item}
@@ -104,8 +107,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   card: {
-    width: 300,
-    maxWidth: '80%',
+    width: '80%',
+    maxWidth: '95%',
+    minWidth: 300,
     alignItems: 'center',
     marginVertical: 20,
   },
@@ -118,6 +122,10 @@ const styles = StyleSheet.create({
   listContainer: {
     flex: 1,
     width: '80%',
+  },
+  listContainerBig: {
+    flex: 1,
+    width: '60%',
   },
   list: {
     flexGrow: 1,

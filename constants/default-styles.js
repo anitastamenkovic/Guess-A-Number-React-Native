@@ -1,16 +1,16 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 import Colors from './colors';
 
 export default StyleSheet.create({
   text: {
     fontFamily: 'Open Sans',
-    fontSize: 18,
+    fontSize: Dimensions.get('window').height < 400 ? 16 : 18,
     textAlign: 'center',
     color: Colors.grey,
   },
   titleText: {
     fontFamily: 'Open Sans',
-    fontSize: 20,
+    fontSize: Dimensions.get('window').height < 400 ? 18 : 20,
     fontWeight: 'bold',
     marginVertical: 10,
     textAlign: 'center',
