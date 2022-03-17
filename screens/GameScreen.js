@@ -1,12 +1,12 @@
 import React, {useState, useRef, useEffect} from 'react';
 import {StyleSheet, View, Text, Button, Alert, ScrollView, FlatList} from 'react-native';
 
-import NumberContainer from '../layout/NumberContainer';
-import Card from '../layout/Card';
-import MainButton from '../layout/mainButton';
-import List from '../layout/List';
-import Colors from '../../constants/colors';
-import DefaultStyles from '../../constants/default-styles';
+import NumberContainer from '../components/layout/NumberContainer';
+import Card from '../components/layout/Card';
+import MainButton from '../components/layout/mainButton';
+import List from '../components/layout/List';
+import Colors from '../constants/colors';
+import DefaultStyles from '../constants/default-styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const generateRandomNumber = (min, max, exclude) => {

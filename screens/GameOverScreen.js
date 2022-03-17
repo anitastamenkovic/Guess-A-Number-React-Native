@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, View, Text, Button, Image} from 'react-native';
 
-import MainButton from '../layout/mainButton';
-import Colors from '../../constants/colors';
-import DefaultStyles from '../../constants/default-styles';
+import MainButton from '../components/layout/mainButton';
+import Colors from '../constants/colors';
+import DefaultStyles from '../constants/default-styles';
 
 const GameOverScreen = ({roundsNumber, userNumber, onRestart}) => {
   return (

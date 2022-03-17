@@ -3,9 +3,9 @@ import type {Node} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 import Header from './components/layout/Header.js';
-import StartGameScreen from './components/screens/StartGameScreen.js';
-import GameScreen from './components/screens/GameScreen.js';
-import GameOverScreen from './components/screens/GameOverScreen.js';
+import StartGameScreen from './screens/StartGameScreen.js';
+import GameScreen from './screens/GameScreen.js';
+import GameOverScreen from './screens/GameOverScreen.js';
 
 const App: () => Node = () => {
   const [userNumber, setUserNumber] = useState();
