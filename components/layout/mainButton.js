@@ -15,8 +15,8 @@ const MainButton = ({children, onClick, style}) => {
 const styles = StyleSheet.create({
   btnContainer: {
     backgroundColor: Colors.primary,
-    paddingHorizontal: 30,
-    paddingVertical: 12,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
