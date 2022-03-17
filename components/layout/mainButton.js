@@ -1,8 +1,27 @@
-import React from 'react';
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  StyleSheet,
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 import Colors from '../../constants/colors';
 
 const MainButton = ({children, onClick, style}) => {
+  const [buttonWidth, setButtonWidth] = useState(
+    Dimensions.get('window').width / 4,
+  );
+
+  useEffect(() => {
+    const updateLayout = () => {
+      setButtonWidth(Dimensions.get('window').width / 4);
+    };
+    const subscribe = Dimensions.addEventListener('change', updateLayout);
+    return () => {
+      subscribe.remove();
+    };
+  });
   return (
     <TouchableOpacity activeOpacity={0.6} onPress={onClick}>
       <View style={{...styles.btnContainer, ...style}}>
