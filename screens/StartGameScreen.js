@@ -106,14 +106,14 @@ const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: '100%',
+    width: '80%',
   },
   resetBtn: {
     backgroundColor: Colors.accent,
-    width: Dimensions.get('window').width / 3,
+    width: Dimensions.get('window').width / 4,
   },
   confirmBtn: {
-    width: Dimensions.get('window').width / 3,
+    width: Dimensions.get('window').width / 4,
   },
   input: {
     width: 50,

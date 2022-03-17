@@ -16,7 +16,6 @@ import MainButton from '../components/layout/mainButton';
 import List from '../components/layout/List';
 import Colors from '../constants/colors';
 import DefaultStyles from '../constants/default-styles';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const generateRandomNumber = (min, max, exclude) => {
   min = Math.ceil(min);

@@ -21,7 +21,7 @@ const GameOverScreen = ({roundsNumber, userNumber, onRestart}) => {
           <Image
             style={styles.image}
             resizeMode="cover"
-            source={require('../../assets/success.png')}
+            source={require('../assets/success.png')}
             // Network image
             //   fadeDuration={1000}
             //   source={{
