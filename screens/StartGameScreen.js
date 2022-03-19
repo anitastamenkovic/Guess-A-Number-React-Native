@@ -9,6 +9,7 @@ import {
   Dimensions,
   ScrollView,
   KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 
 import Card from '../components/layout/Card';

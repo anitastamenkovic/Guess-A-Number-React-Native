@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import type {Node} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
 
 import Header from './components/layout/Header.js';
 import StartGameScreen from './screens/StartGameScreen.js';
@@ -25,7 +25,7 @@ const App: () => Node = () => {
   };
 
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
       <Header title="Guess a Number" />
       {!userNumber && <StartGameScreen onStartGame={startGameHandler} />}
       {userNumber && guessRounds <= 0 && (
@@ -38,7 +38,7 @@ const App: () => Node = () => {
           onRestart={startNewGameHandler}
         />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 

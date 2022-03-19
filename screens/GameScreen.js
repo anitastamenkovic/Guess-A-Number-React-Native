@@ -8,6 +8,7 @@ import {
   Dimensions,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 import NumberContainer from '../components/layout/NumberContainer';
 import Card from '../components/layout/Card';
@@ -18,6 +19,11 @@ import DefaultStyles from '../constants/default-styles';
 import {generateRandomNumber} from '../helpers/helpers';
 
 const GameScreen = ({userChoice, onGameOver}) => {
+  // Lock when game starts
+  // async function changeScreenOrientation() {
+  //   await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.ALL);
+  // }
+
   const initialGuess = generateRandomNumber(1, 100, userChoice);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
   const [pastGuesses, setPastGuesses] = useState([initialGuess.toString()]);
